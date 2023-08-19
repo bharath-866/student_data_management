@@ -17,7 +17,7 @@ def insert(name,age,gender,mail_id):
         print('record inserted')
     except:
         mysqldb.rollback()
-    mysqlcursor.close()
+    # mysqlcursor.close()
 
 
 # display table
@@ -30,7 +30,7 @@ def view():
             print(i)
     except Exception as e:
         print(e)
-    mysqlcursor.close()
+    # mysqlcursor.close()
 def update():
     print('''
     1.name
@@ -42,25 +42,25 @@ def update():
     if ch==1:
         name=input("enter name :")
         roll_no=int(input("enter roll_no :"))
-        mysqlcursor.execute("update student set name=%s where roll_no=%s",(name,roll_no))
+        mysqlcursor.execute("update student_details set name=%s where roll_no=%s",(name,roll_no))
         mysqldb.commit()
         # mysqlcursor.close()
     elif ch==2:
         age = int(input("enter age :"))
         roll_no = int(input("enter roll_no :"))
-        mysqlcursor.execute("update student set age=%s where roll_no=%s", (age, roll_no))
+        mysqlcursor.execute("update student_details set age=%s where roll_no=%s", (age, roll_no))
         mysqldb.commit()
         # mysqlcursor.close()
     elif ch==3:
         gender = input("enter gender :")
         roll_no = int(input("enter roll_no :"))
-        mysqlcursor.execute("update student set gender=%s where roll_no=%s", (gender, roll_no))
+        mysqlcursor.execute("update student_details set gender=%s where roll_no=%s", (gender, roll_no))
         mysqldb.commit()
         # mysqlcursor.close()
     elif ch==4:
         mail_id = input("enter mail :")
         roll_no = int(input("enter roll_no :"))
-        mysqlcursor.execute("update student set mail_id=%s where roll_no=%s", (mail_id, roll_no))
+        mysqlcursor.execute("update student_details set mail_id=%s where roll_no=%s", (mail_id, roll_no))
         mysqldb.commit()
         # mysqlcursor.close()
     else:
@@ -68,13 +68,13 @@ def update():
 # delete record
 def delete(roll_no):
     try:
-        mysqlcursor.execute("delete from student_details where roll_no=%s",roll_no)
+        mysqlcursor.execute("delete from student_details where roll_no=%s",(roll_no,))
         mysqldb.commit()
         print("record deleted successfully")
     except:
         mysqldb.rollback()
 
-    mysqldb.close()
+    # mysqldb.close()
 while True:
     print('''
 1.insert

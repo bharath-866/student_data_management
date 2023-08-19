@@ -9,6 +9,7 @@ mysqldb = mysql.connector.connect(
 )
 mysqlcursor = mysqldb.cursor()
 
+# insert into table
 def insert(name,age,gender,mail_id):
     try:
         mysqlcursor.execute(
@@ -17,8 +18,6 @@ def insert(name,age,gender,mail_id):
         print('record inserted')
     except:
         mysqldb.rollback()
-    # mysqlcursor.close()
-
 
 # display table
 def view():
@@ -30,7 +29,8 @@ def view():
             print(i)
     except Exception as e:
         print(e)
-    # mysqlcursor.close()
+
+# update values
 def update():
     print('''
     1.name
@@ -44,27 +44,27 @@ def update():
         roll_no=int(input("enter roll_no :"))
         mysqlcursor.execute("update student_details set name=%s where roll_no=%s",(name,roll_no))
         mysqldb.commit()
-        # mysqlcursor.close()
+        print("name updated")
     elif ch==2:
         age = int(input("enter age :"))
         roll_no = int(input("enter roll_no :"))
         mysqlcursor.execute("update student_details set age=%s where roll_no=%s", (age, roll_no))
         mysqldb.commit()
-        # mysqlcursor.close()
+        print("age updated")
     elif ch==3:
         gender = input("enter gender :")
         roll_no = int(input("enter roll_no :"))
         mysqlcursor.execute("update student_details set gender=%s where roll_no=%s", (gender, roll_no))
         mysqldb.commit()
-        # mysqlcursor.close()
+        print("gender updated")
     elif ch==4:
         mail_id = input("enter mail :")
         roll_no = int(input("enter roll_no :"))
         mysqlcursor.execute("update student_details set mail_id=%s where roll_no=%s", (mail_id, roll_no))
         mysqldb.commit()
-        # mysqlcursor.close()
+        print("mail updated")
     else:
-        print("invalid selection")
+        print("invalid selection!")
 # delete record
 def delete(roll_no):
     try:
@@ -74,7 +74,7 @@ def delete(roll_no):
     except:
         mysqldb.rollback()
 
-    # mysqldb.close()
+
 while True:
     print('''
 1.insert
@@ -97,5 +97,5 @@ while True:
         roll_no = int(input("enter roll_no :"))
         delete(roll_no)
     else:
-        quit("i don't understand")
+        quit("i don't understand!")
 

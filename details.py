@@ -9,11 +9,16 @@ mysqldb = mysql.connector.connect(
 )
 mysqlcursor = mysqldb.cursor()
 
+# table creation
+try:
+    mysqlcursor.execute("create table student_details(roll_no int primary key auto_increment,name varchar(50),age int,gender varchar(20),mail_id varchar(30))")
+except Exception as e:
+    print(e)
+
 # insert into table
 def insert(name,age,gender,mail_id):
     try:
-        mysqlcursor.execute(
-            "insert into student_details(name,age,gender,mail_id)values(%s,%s,%s,%s)",(name,age,gender,mail_id))
+        mysqlcursor.execute("insert into student_details(name,age,gender,mail_id)values(%s,%s,%s,%s)",(name,age,gender,mail_id))
         mysqldb.commit()
         print('record inserted')
     except:
